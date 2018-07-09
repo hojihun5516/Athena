@@ -8,7 +8,7 @@ So I make a Lecture sharing platform. this project's name is 'Athena'. Athena is
 
 ## Build status
 
-## Code style
+...
 
 ## Screenshots
 Include logo/demo screenshots.
@@ -19,16 +19,18 @@ Include logo/demo screenshots.
 - [Node.js](https://nodejs.org/en/)
 - [React](https://reactjs.org/)
 
-## Code Example
-
 ## Installation
 
+...
+
 ## API Reference
+
+...
 
 ## Release Table
 - [Release Table](https://docs.google.com/spreadsheets/d/1PIefkpbnYsELmCgrxDInCZz67_yFGkkTfATFjPOHCTM/edit?usp=sharing)
 
-## Contribute
+## How to Contribute
 Let people know how they can contribute into your project. A [contributing guideline](https://github.com/JuniorDevelopersKR/Athena/blob/master/CONTRIBUTING.md) will be a big plus.
 
 ## License
