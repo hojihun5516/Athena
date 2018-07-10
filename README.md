@@ -17,11 +17,36 @@ Include logo/demo screenshots.
 
 <b>Built with</b>
 - [Node.js](https://nodejs.org/en/)
+- [Typescript](https://www.typescriptlang.org/)
 - [React](https://reactjs.org/)
+- [Express](https://expressjs.com/)
+- [Babeljs](https://babeljs.io/)
+- [Webpack](https://webpack.js.org/)
 
-## Installation
+## Quick Start
 
-...
+```
+# Clone the repository
+git clone https://github.com/JuniorDevelopersKR/Athena.git
+
+# Go inside the directory
+cd Athena
+
+# Install dependencies
+yarn (or npm install)
+
+# Start development server
+yarn dev (or npm run dev)
+
+# Build for production
+yarn build (or npm run build)
+
+# Start production server
+yarn start (or npm start)
+
+# Upgrade dependencies(Warnning)
+yarn Upgrade (or npm upgrade)
+```
 
 ## API Reference
 

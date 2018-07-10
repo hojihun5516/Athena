@@ -70,3 +70,5 @@ node_modules
 # build data
 build/
 
+# webpack file
+dist/
