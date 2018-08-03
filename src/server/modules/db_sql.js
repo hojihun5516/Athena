@@ -15,10 +15,5 @@ module.exports = function () {
       });
     },
     pool: pool
-    // insert: function(callback) {
-    //   pool.getConnection(function(err, connection) {
-    //     let sql =
-    //   })
-    // }
   }
 };
