@@ -72,3 +72,9 @@ build/
 
 # webpack file
 dist/
+
+# test directory
+test/
+
+# DataBase config
+db_config.js
