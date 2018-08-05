@@ -80,5 +80,4 @@ test/
 db_config.js
 
 # social key
-secret.js
-
+.secret.js
