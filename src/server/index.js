@@ -1,9 +1,15 @@
 const
+  express = require('express'),
   passport = require('passport'),
   KakaoStrategy = require('passport-kakao'),
+  NaverStrategy = require('passport-naver'),
+  FacebookStrategy = require('passport-facebook'),
+  GoogleStrategy = require('passport-google-oauth').OAuthStrategy,
   db_config = require('./modules/db_config'),
   sql = require('./modules/db_sql')(),
-  secret = require('./modules/secret'),
+  secret = require('./modules/.secret'),
+  os = require('os'),
+  
   app = express();
 
 
@@ -11,7 +17,6 @@ app.use(express.static('dist'));
 
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 passport.use('kakao-login', new KakaoStrategy({
     clientID: secret.kakao.client_id,
@@ -22,15 +27,52 @@ passport.use('kakao-login', new KakaoStrategy({
     return done(null, profile);
   }));
 
+passport.use('naver-login', new NaverStrategy({
+    clientID: secret.naver.client_id,
+    clientSecret: secret.naver.secret_id,
+    callbackURL: secret.naver.callback_url
+  },
+  function(accessToken, refreshToken, profile, done) {
+    return done(null, profile);
+  }));
 
-app.get('/', function(req, res) {
-  res.send('<a href="/kakao">kakao Login</a>');
-});
+passport.use('facebook-login', new FacebookStrategy({
+    clientID: secret.facebook.client_id,
+    clientSecret: secret.facebook.secret_id,
+    callbackURL: secret.facebook.callback_url
+  },
+  function(accessToken, refreshToken, profile, done) {
+    return done(null, profile);
+  }));
+
+// passport.use('google-login', new GoogleStrategy({
+//     clientID: secret.google.client_id,
+//     clientSecret: secret.google.secret_id,
+//     callbackURL: secret.google.callback_url
+//   },
+//   function(accessToken, refreshToken, profile, done) {
+//     return done(null, profile);
+//   }));
 
 // login for kakao
 app.get('/kakao', passport.authenticate('kakao-login'));
+app.get('/naver', passport.authenticate('naver-login'));
+app.get('/facebook', passport.authenticate('facebook-login'));
+app.get('/google', passport.authenticate('google-login'));
 
 app.get('/oauth/kakao/callback', passport.authenticate('kakao-login', {
+  successRedirect: '/profile',
+  failureRedirect: '/'
+}));
+app.get('/oauth/naver/callback', passport.authenticate('naver-login', {
+  successRedirect: '/profile',
+  failureRedirect: '/'
+}));
+app.get('/oauth/facebook/callback', passport.authenticate('facebook-login', {
+  successRedirect: '/profile',
+  failureRedirect: '/'
+}));
+app.get('/oauth/google/callback', passport.authenticate('google-login', {
   successRedirect: '/profile',
   failureRedirect: '/'
 }));
