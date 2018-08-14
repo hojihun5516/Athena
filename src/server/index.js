@@ -4,12 +4,12 @@ const
   KakaoStrategy = require('passport-kakao'),
   NaverStrategy = require('passport-naver'),
   FacebookStrategy = require('passport-facebook'),
-  GoogleStrategy = require('passport-google-oauth').OAuthStrategy,
+  // GoogleStrategy = require('passport-google-oauth').OAuthStrategy,
   db_config = require('./modules/db_config'),
   sql = require('./modules/db_sql')(),
-  secret = require('./modules/.secret'),
+  secret = require('./modules/secret'),
   os = require('os'),
-  
+
   app = express();
 
 
