@@ -4,10 +4,9 @@ const
   KakaoStrategy = require('passport-kakao'),
   NaverStrategy = require('passport-naver'),
   FacebookStrategy = require('passport-facebook'),
-  // GoogleStrategy = require('passport-google-oauth').OAuthStrategy,
-  db_config = require('./modules/db_config'),
+  // GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
   sql = require('./modules/db_sql')(),
-  secret = require('./modules/secret'),
+  secret = require('./modules/.secret'),
   os = require('os'),
 
   app = express();
@@ -51,10 +50,13 @@ passport.use('facebook-login', new FacebookStrategy({
 //     callbackURL: secret.google.callback_url
 //   },
 //   function(accessToken, refreshToken, profile, done) {
-//     return done(null, profile);
-//   }));
+//       User.findOrCreate({ googleId: profile.id }, function (err, user) {
+//         return done(err, user);
+//       });
+//   }
+// ));
 
-// login for kakao
+// login for social community
 app.get('/kakao', passport.authenticate('kakao-login'));
 app.get('/naver', passport.authenticate('naver-login'));
 app.get('/facebook', passport.authenticate('facebook-login'));
