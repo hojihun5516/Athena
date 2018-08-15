@@ -4,11 +4,11 @@ const
   KakaoStrategy = require('passport-kakao'),
   NaverStrategy = require('passport-naver'),
   FacebookStrategy = require('passport-facebook'),
-  GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
+  // GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
   sql = require('./modules/db_sql')(),
   secret = require('./modules/.secret'),
   os = require('os'),
-  
+
   app = express();
 
 
@@ -44,17 +44,17 @@ passport.use('facebook-login', new FacebookStrategy({
     return done(null, profile);
   }));
 
-passport.use('google-login', new GoogleStrategy({
-    clientID: secret.google.client_id,
-    clientSecret: secret.google.secret_id,
-    callbackURL: secret.google.callback_url
-  },
-  function(accessToken, refreshToken, profile, done) {
-      User.findOrCreate({ googleId: profile.id }, function (err, user) {
-        return done(err, user);
-      });
-  }
-));
+// passport.use('google-login', new GoogleStrategy({
+//     clientID: secret.google.client_id,
+//     clientSecret: secret.google.secret_id,
+//     callbackURL: secret.google.callback_url
+//   },
+//   function(accessToken, refreshToken, profile, done) {
+//       User.findOrCreate({ googleId: profile.id }, function (err, user) {
+//         return done(err, user);
+//       });
+//   }
+// ));
 
 // login for social community
 app.get('/kakao', passport.authenticate('kakao-login'));
@@ -70,7 +70,7 @@ app.get('/oauth/naver/callback', passport.authenticate('naver-login', {
   successRedirect: '/profile',
   failureRedirect: '/'
 }));
-app.get('/auth/login/facebook/callback', passport.authenticate('facebook-login', {
+app.get('/oauth/facebook/callback', passport.authenticate('facebook-login', {
   successRedirect: '/profile',
   failureRedirect: '/'
 }));
