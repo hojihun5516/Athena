@@ -11,12 +11,15 @@ const
 
   app = express();
 
-
+// use webpack
 app.use(express.static('dist'));
 
+// use initialize, session at passport
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+// social login event listener use passport
 passport.use('kakao-login', new KakaoStrategy({
     clientID: secret.kakao.client_id,
     clientSecret: secret.kakao.secret_id,
@@ -24,7 +27,8 @@ passport.use('kakao-login', new KakaoStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     return done(null, profile);
-  }));
+  })
+);
 
 passport.use('naver-login', new NaverStrategy({
     clientID: secret.naver.client_id,
@@ -33,7 +37,8 @@ passport.use('naver-login', new NaverStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     return done(null, profile);
-  }));
+  })
+);
 
 passport.use('facebook-login', new FacebookStrategy({
     clientID: secret.facebook.client_id,
@@ -42,7 +47,8 @@ passport.use('facebook-login', new FacebookStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     return done(null, profile);
-  }));
+  })
+);
 
 // passport.use('google-login', new GoogleStrategy({
 //     clientID: secret.google.client_id,
@@ -57,10 +63,10 @@ passport.use('facebook-login', new FacebookStrategy({
 // ));
 
 // login for social community
-app.get('/kakao', passport.authenticate('kakao-login'));
-app.get('/naver', passport.authenticate('naver-login'));
-app.get('/facebook', passport.authenticate('facebook-login'));
-app.get('/google', passport.authenticate('google-login'));
+app.get('/auth/login/kakao', passport.authenticate('kakao-login'));
+app.get('/auth/login/naver', passport.authenticate('naver-login'));
+app.get('/auth/login/facebook', passport.authenticate('facebook-login'));
+// app.get('/google', passport.authenticate('google-login'));
 
 app.get('/oauth/kakao/callback', passport.authenticate('kakao-login', {
   successRedirect: '/profile',
@@ -74,10 +80,10 @@ app.get('/oauth/facebook/callback', passport.authenticate('facebook-login', {
   successRedirect: '/profile',
   failureRedirect: '/'
 }));
-app.get('/oauth/google/callback', passport.authenticate('google-login', {
-  successRedirect: '/profile',
-  failureRedirect: '/'
-}));
+// app.get('/oauth/google/callback', passport.authenticate('google-login', {
+//   successRedirect: '/profile',
+//   failureRedirect: '/'
+// }));
 
 passport.serializeUser(function(user, done) {
   infoProvider = user.provider
@@ -90,6 +96,7 @@ passport.serializeUser(function(user, done) {
     if (err) console.log(err);
     else console.log(data);
   });
+
   done(null, user);
 });
 
@@ -105,4 +112,6 @@ app.get('/api/getUsername', (req, res) => res.send({
   username: os.userInfo().username
 }));
 
-app.listen(8080, () => console.log('Listening on port 8080!'));
+app.listen(8080, () => 
+  console.log('Listening on port 8080!')
+);
