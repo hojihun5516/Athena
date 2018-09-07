@@ -8,12 +8,17 @@ const
   sql = require('./modules/db_sql')(),
   secret = require('./modules/.secret'),
   os = require('os'),
+  session = require('express-session'),
 
   app = express();
 
 
-app.use(express.static('dist'));
-
+app.use(express.static('../../public'));
+app.use(session({
+  secret: 'athena01',
+  resave: false,
+  saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
