@@ -3,18 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
-    "express": "^4.16.3",
-    "express-session": "^1.15.6",
-    "mysql": "^2.16.0",
-    "passport": "^0.4.0",
-    "passport-facebook": "^2.1.1",
-    "passport-google-oauth": "^1.0.0",
-    "passport-kakao": "^0.0.5",
-    "passport-naver": "^1.0.6",
-    "react": "^16.3.1",
-    "react-dom": "^16.3.1"
-=======
     "@types/react-router-dom": "^4.3.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
@@ -27,7 +15,6 @@
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"
->>>>>>> upstream/master
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",
