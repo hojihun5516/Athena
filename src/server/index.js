@@ -5,8 +5,8 @@ const
   NaverStrategy = require('passport-naver'),
   FacebookStrategy = require('passport-facebook'),
   // GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
-  sql = require('./modules/db_sql')(),
-  secret = require('./modules/.secret'),
+  sql = require('./db/db_sql')(),
+  secret = require('./db/.secret'),
   os = require('os'),
   session = require('express-session'),
 
