@@ -1,9 +1,9 @@
 module.exports = (function() {
   return {
-    host: "localhost",
-    user: "root",
-    password: "rlfls159",
     database: "athena",
-    port : "3306"
+    host: "localhost",
+    password: "rlfls159",
+    port : "3306",
+    user: "root"
   }
 })();

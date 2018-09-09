@@ -3,13 +3,15 @@ const
 
 module.exports = function () {
   return {
-    checkSameUser: function(provider_id, callback) {
-      pool.getConnection(function(err, con) {
-        console.log(err);
-        let sql = 'select * from user where provider_id =' + provider_id;
+    checkSameUser: function(providerId, callback) {
+      pool.getConnection(function(error, con) {
+        console.log(error);
+        let sql = 'select * from user where provider_id =' + providerId;
         con.query(sql, function (err, result, fields) {
           con.release();
-          if (err) return callback(err);
+          if (err){ 
+            return callback(err)
+          };
           callback(null, result);
         });
       });

@@ -1,49 +1,48 @@
-const
-  express = require('express'),
-  passport = require('passport'),
-  KakaoStrategy = require('passport-kakao'),
-  NaverStrategy = require('passport-naver'),
-  FacebookStrategy = require('passport-facebook'),
-  // GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
-  sql = require('./db/db_sql')(),
-  secret = require('./db/.secret'),
-  os = require('os'),
-  session = require('express-session'),
+const express = require('express')
+const passport = require('passport')
+const KakaoStrategy = require('passport-kakao')
+const NaverStrategy = require('passport-naver')
+const FacebookStrategy = require('passport-facebook')
+// GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
+const sql = require('./db/db_sql')()
+const os = require('os')
+const secret = require('./db/secret')
+const session = require('express-session')
 
-  app = express();
+const app = express();
 
 
 app.use(express.static('../../public'));
 app.use(session({
-  secret: 'athena01',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  secret: 'athena01'
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use('kakao-login', new KakaoStrategy({
+    callbackURL: secret.kakao.callback_url,
     clientID: secret.kakao.client_id,
-    clientSecret: secret.kakao.secret_id,
-    callbackURL: secret.kakao.callback_url
+    clientSecret: secret.kakao.secret_id
   },
   function(accessToken, refreshToken, profile, done) {
     return done(null, profile);
   }));
 
 passport.use('naver-login', new NaverStrategy({
+    callbackURL: secret.naver.callback_url,
     clientID: secret.naver.client_id,
-    clientSecret: secret.naver.secret_id,
-    callbackURL: secret.naver.callback_url
+    clientSecret: secret.naver.secret_id
   },
   function(accessToken, refreshToken, profile, done) {
     return done(null, profile);
   }));
 
 passport.use('facebook-login', new FacebookStrategy({
+    callbackURL: secret.facebook.callback_url,
     clientID: secret.facebook.client_id,
-    clientSecret: secret.facebook.secret_id,
-    callbackURL: secret.facebook.callback_url
+    clientSecret: secret.facebook.secret_id
   },
   function(accessToken, refreshToken, profile, done) {
     return done(null, profile);
@@ -68,20 +67,20 @@ app.get('/facebook', passport.authenticate('facebook-login'));
 app.get('/google', passport.authenticate('google-login'));
 
 app.get('/oauth/kakao/callback', passport.authenticate('kakao-login', {
-  successRedirect: '/profile',
-  failureRedirect: '/'
+  failureRedirect: '/',
+  successRedirect: '/profile'
 }));
 app.get('/oauth/naver/callback', passport.authenticate('naver-login', {
-  successRedirect: '/profile',
-  failureRedirect: '/'
+  failureRedirect: '/',
+  successRedirect: '/profile'
 }));
 app.get('/oauth/facebook/callback', passport.authenticate('facebook-login', {
-  successRedirect: '/profile',
-  failureRedirect: '/'
+  failureRedirect: '/',
+  successRedirect: '/profile'
 }));
 app.get('/oauth/google/callback', passport.authenticate('google-login', {
-  successRedirect: '/profile',
-  failureRedirect: '/'
+  failureRedirect: '/',
+  successRedirect: '/profile'
 }));
 
 passport.serializeUser(function(user, done) {
@@ -90,10 +89,14 @@ passport.serializeUser(function(user, done) {
 
   console.log(userInfo.id);
   console.log(infoProvider);
+  console.log(userInfo);
 
   sql.checkSameUser(userInfo.id, function(err, data) {
-    if (err) console.log(err);
-    else console.log(data);
+    if (err) {
+      console.log(err);
+      return done(null, false);
+    };
+    console.log(data.length);
   });
   done(null, user);
 });
