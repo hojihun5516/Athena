@@ -5,12 +5,13 @@ const NaverStrategy = require('passport-naver')
 const FacebookStrategy = require('passport-facebook')
 // GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
 const sql = require('./db/db_sql')()
+const board = require('./db/board')()
 const os = require('os')
 const secret = require('./db/secret')
 const session = require('express-session')
+const bodyParser = require('body-parser')
 
 const app = express();
-
 
 app.use(express.static('../../public'));
 app.use(session({
@@ -20,6 +21,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(bodyParser.json());
 
 passport.use('kakao-login', new KakaoStrategy({
     callbackURL: secret.kakao.callback_url,
@@ -112,5 +114,15 @@ app.get('/profile', function(req, res) {
 app.get('/api/getUsername', (req, res) => res.send({
   username: os.userInfo().username
 }));
+
+//board를 db에 등록하고 저장된 정보를 json으로 response
+app.post('/board', function(req, res) {
+  console.log(req.body);
+  board.write(req.body, function(err, result) {
+    board.show(result.insertId, function(showErr, data) {
+      res.json(data[0]);
+    })
+  });
+})
 
 app.listen(8080, () => console.log('Listening on port 8080!'));
