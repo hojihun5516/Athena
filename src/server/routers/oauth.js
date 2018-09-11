@@ -5,7 +5,7 @@ const NaverStrategy = require('passport-naver')
 const FacebookStrategy = require('passport-facebook')
 
 const sql = require('../db/db_sql')()
-const secret = require('../db/secret')
+const secret = require('../db/.secret')
 
 const router = express.Router();
 
