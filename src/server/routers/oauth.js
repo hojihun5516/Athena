@@ -5,7 +5,6 @@ const NaverStrategy = require('passport-naver')
 const FacebookStrategy = require('passport-facebook')
 
 const sql = require('../db/db_sql')()
-const os = require('os')
 const secret = require('../db/secret')
 
 const router = express.Router();
@@ -61,14 +60,10 @@ router.get('/oauth/google/callback', passport.authenticate('google-login', {
 }));
 
 passport.serializeUser(function(user, done) {
-  infoProvider = user.provider
-  userInfo = user._json;
+  // userInfo = user._json;
+  // console.log(userInfo);
 
-  console.log(userInfo.id);
-  console.log(infoProvider);
-  console.log(userInfo);
-
-  sql.checkSameUser(userInfo.id, function(err, data) {
+  sql.signIn(user, function(err, data) {
     if (err) {
       console.log(err);
       return done(null, false);

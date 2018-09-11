@@ -8,7 +8,7 @@ router.post('', function(req, res) {
   console.log(req.body);
   board.write(req.body, function(err, result) {
     board.show(result.insertId, function(showErr, data) {
-      res.json(data[0]);
+      res.status(201).json(data[0]);
     })
   });
 })

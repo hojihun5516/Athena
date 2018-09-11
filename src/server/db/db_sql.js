@@ -3,19 +3,36 @@ const
 
 module.exports = function() {
   return {
-    checkSameUser: function(providerId, callback) {
+    signIn: function(userInfo, callback) {
       pool.getConnection(function(error, con) {
         console.log(error);
+        let id;
+        let username;
         let sql = 'select * from user where provider_id = ?';
-        con.query(sql, providerId, function(err, result, fields) {
-          con.release();
+        con.query(sql, userInfo.id, function(err, result) {
           if (err) {
-            return callback(err)
+            con.release();
+            return callback(err);
           };
-          callback(null, result);
+          if (result.length === 0) {
+            let signUpSql = 'INSERT INTO user (username, provider, provider_id) VALUES(?, ?, ?)';
+            con.query(signUpSql, [userInfo.username, userInfo.provider, userInfo.id], function(signUpErr, rows) {
+              con.release();
+              if (signUpErr) {
+                return callback(signUpErr);
+              }
+              id = rows.insertId;
+            })
+          } else {
+            id = result.id;
+          }
+          let user = {
+            id: id,
+            username: userInfo.username
+          }
+          callback(null, user);
         });
       });
-    },
-    pool: pool
+    }
   }
 };
