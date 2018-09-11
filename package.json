@@ -4,6 +4,20 @@
   "private": true,
   "dependencies": {
     "@types/react-router-dom": "^4.3.0",
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "express-session": "^1.15.6",
+    "http-errors": "~1.6.2",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.0",
+    "mysql": "^2.16.0",
+    "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
+    "passport-kakao": "0.0.5",
+    "passport-naver": "^1.0.6",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-responsive-modal": "^3.3.0",
@@ -14,7 +28,9 @@
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "eject": "react-scripts-ts eject",
+    "server": "node ./src/server/index.js",
+    "dev": "concurrently \"yarn node ./src/server/index.js\" \"yarn start\""
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",
@@ -22,6 +38,8 @@
     "@types/react": "^16.4.13",
     "@types/react-dom": "^16.0.7",
     "react-autocomplete-cli": "0.0.3",
-    "typescript": "^3.0.3"
-  }
+    "typescript": "^3.0.3",
+    "concurrently": "^3.5.0"
+  },
+  "proxy": "http://localhost:8080/"
 }
