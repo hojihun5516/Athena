@@ -1,3 +1,5 @@
+
+import axios from 'axios';
 import React, { Component } from 'react';
 
 class WritingBoard extends Component {
@@ -13,6 +15,18 @@ class WritingBoard extends Component {
       //state값을 App.js의 handleCreate에 보내준다
 
       this.props.onCreate(this.state);
+      axios.post('/boards',{
+        contents : 'asdfasdf',
+        title : 'tittit',
+      })
+      .then(function success(response){
+        console.log("success");
+        console.log(response.data);
+
+      }).catch(function b(error){
+        console.log("error");
+        console.log(error);
+      })
       this.setState({
         contents: '',
         title : '',
