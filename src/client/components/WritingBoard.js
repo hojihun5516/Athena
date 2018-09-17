@@ -38,6 +38,7 @@ class WritingBoard extends Component {
       this.setState({
         [e.target.name]: e.target.value
       });
+
     }
 
 
@@ -67,6 +68,7 @@ class WritingBoard extends Component {
             value={this.state.contents}
             placeholder="Content"
             rows={8}
+
           />
         <button type="submit">글작성</button>
         </form>
