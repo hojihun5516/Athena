@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 
 class WritingBoard extends Component {
@@ -13,18 +14,12 @@ class WritingBoard extends Component {
       //state값을 App.js의 handleCreate에 보내준다
 
       this.props.onCreate(this.state);
-      this.setState({
-        contents: '',
-        title : '',
-      })
-
     }
 
     handleChange = (e) => {
       this.setState({
         [e.target.name]: e.target.value
       });
-
     }
 
 
@@ -54,7 +49,6 @@ class WritingBoard extends Component {
             value={this.state.contents}
             placeholder="Content"
             rows={8}
-
           />
         <button type="submit">글작성</button>
         </form>
