@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import Modal from "react-responsive-modal";
 
@@ -20,6 +21,17 @@ class MakeGroupM extends Component {
     e.preventDefault();
     //state값을 App.js의 handleCreate에 보내준다
     this.props.onCreate(this.state);
+    axios.post('/groups',{
+      name: this.state.name
+    })
+    .then(function success(response){
+      console.log("success");
+      console.log(response.data);
+
+    }).catch(function b(error){
+      console.log("error");
+      console.log(error);
+    })
     this.setState({
       name : '',
     })
