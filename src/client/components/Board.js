@@ -1,5 +1,6 @@
 
 import * as React from 'react';
+
 import WritingBoard from './WritingBoard';
 import BoardList from './BoardList';
 import { BrowserRouter as Router, Link ,NavLink, Redirect, Route, RouteComponentProps, Switch } from 'react-router-dom';
@@ -10,7 +11,7 @@ class Board extends React.Component{
   state = {
 
     information: [
-
+      {contents:'', title:''}
     ],
 
   }
@@ -24,6 +25,18 @@ class Board extends React.Component{
         id: this.id++,
       })
     });
+  //   axios.post('/boards',{
+  //     contents : this.state.information[1],
+  //     title : 'tittit',
+  //   })
+  //   .then(function success(response){
+  //     console.log("success");
+  //     console.log(response.data);
+  //
+  //   }).catch(function b(error){
+  //     console.log("error");
+  //     console.log(error);
+  //   })
   }
 
   handleUpdate = (id, data) => {
