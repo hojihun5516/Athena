@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> 237e4d44a1601080335eaa425802a1b42a3b0c94
 import axios from 'axios';
 import React, { Component } from 'react';
 
@@ -18,8 +15,6 @@ class WritingBoard extends Component {
       //state값을 App.js의 handleCreate에 보내준다
 
       this.props.onCreate(this.state);
-<<<<<<< HEAD
-=======
       axios.post('/boards',{
         contents : this.state.contents,
         title : this.state.title,
@@ -37,7 +32,6 @@ class WritingBoard extends Component {
         title : '',
       })
 
->>>>>>> 237e4d44a1601080335eaa425802a1b42a3b0c94
     }
 
     handleChange = (e) => {

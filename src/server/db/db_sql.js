@@ -6,7 +6,7 @@ module.exports = function() {
     signIn: function(userInfo, callback) {
       pool.getConnection(function(error, con) {
         console.log(error);
-        let id;
+        var id;
         let username;
         let sql = 'select * from user where provider_id = ?';
         con.query(sql, userInfo.id, function(err, result) {
@@ -24,7 +24,7 @@ module.exports = function() {
               id = rows.insertId;
             })
           } else {
-            id = result.id;
+            id = result[0].id;
           }
           let user = {
             id: id,

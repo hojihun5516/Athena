@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import * as React from 'react';
 import * as service from '../services/posts';
 import WritingBoard from './WritingBoard';
