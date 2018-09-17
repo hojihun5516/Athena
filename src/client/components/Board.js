@@ -1,21 +1,49 @@
 
 import * as React from 'react';
-
+import * as service from '../services/posts';
 import WritingBoard from './WritingBoard';
 import BoardList from './BoardList';
 import { BrowserRouter as Router, Link ,NavLink, Redirect, Route, RouteComponentProps, Switch } from 'react-router-dom';
 
 
-class Board extends React.Component{
-  id = 0;
-  state = {
 
+class Board extends React.Component{
+  state = {
+    id : 0,
     information: [
-      {contents:'', title:''}
+
     ],
 
   }
+  componentWillMount(){
 
+      console.log("componentWillMount");
+      this.fetchBoardInfo(5);
+
+  }
+
+  fetchBoardInfo = async (id) => {
+    console.log("1번");
+    const info = await Promise.all([
+      service.getTitle(id),
+      service.getContent(id)
+    ]);
+    console.log("2번");
+    const {information} = this.state;
+    this.setState(prevState => ({
+      information: information.concat({
+        content : info[0].data.content,
+        title: info[0].data.title,
+      })
+    }))
+    console.log(content);
+    console.log(id);
+    console.log(title);
+  }
+
+  componentDidMount(){
+    console.log("componentDidMount");
+}
 
   handleCreate = (data) => {
     const { information } = this.state;
@@ -25,18 +53,6 @@ class Board extends React.Component{
         id: this.id++,
       })
     });
-  //   axios.post('/boards',{
-  //     contents : this.state.information[1],
-  //     title : 'tittit',
-  //   })
-  //   .then(function success(response){
-  //     console.log("success");
-  //     console.log(response.data);
-  //
-  //   }).catch(function b(error){
-  //     console.log("error");
-  //     console.log(error);
-  //   })
   }
 
   handleUpdate = (id, data) => {

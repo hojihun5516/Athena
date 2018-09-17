@@ -16,8 +16,8 @@ class WritingBoard extends Component {
 
       this.props.onCreate(this.state);
       axios.post('/boards',{
-        contents : 'asdfasdf',
-        title : 'tittit',
+        contents : this.state.contents,
+        title : this.state.title,
       })
       .then(function success(response){
         console.log("success");
