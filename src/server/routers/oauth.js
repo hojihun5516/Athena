@@ -60,17 +60,16 @@ router.get('/oauth/google/callback', passport.authenticate('google-login', {
 }));
 
 passport.serializeUser(function(user, done) {
-  // userInfo = user._json;
-  // console.log(userInfo);
-
-  sql.signIn(user, function(err, data) {
+  sql.signIn(user, function(err, userInfo) {
     if (err) {
       console.log(err);
       return done(null, false);
     };
-    console.log(data.length);
+    console.log(userInfo);
+    //userInfo를 session에 저장
+    //다음 요청부터 request.user로 사용할 수 있다.
+    done(null, userInfo);
   });
-  done(null, user);
 });
 
 passport.deserializeUser(function(user, done) {

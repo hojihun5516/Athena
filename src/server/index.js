@@ -5,7 +5,6 @@ const bodyParser = require('body-parser')
 
 //라우터들
 const oauth = require('./routers/oauth')
-const board = require('./routers/board')
 const group = require('./routers/group')
 
 const app = express();
@@ -23,7 +22,6 @@ app.use(bodyParser.json());
 
 //라우터 사용 - 앞의 url로 시작하는 요청이 들어오면 뒤의 라우터 사용
 app.use('/oauth', oauth);
-app.use('/boards', board);
 app.use('/groups', group);
 
 app.get('/profile', function(req, res) {
