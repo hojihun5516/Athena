@@ -15,7 +15,7 @@ class WritingBoard extends Component {
       //state값을 App.js의 handleCreate에 보내준다
 
       this.props.onCreate(this.state);
-      axios.post('/boards',{
+      axios.post('/groups/2/boards',{
         contents : this.state.contents,
         title : this.state.title,
       })

@@ -34,9 +34,13 @@ router.post('/:groupId/boards', function(req, res) {
 router.get('/:groupId/boards', function(req, res) {
   console.log(req.params.groupId);
   board.findByGroupId(req.params.groupId, function(err, data) {
+<<<<<<< HEAD
     res.status(200).json({
       boards: data
     });
+=======
+  res.status(200).json({ boards: data });
+>>>>>>> 0ea2d66c23d666a3189fceb5329addd22c6982df
   })
 })
 
