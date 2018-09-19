@@ -2,6 +2,19 @@ const pool = require('./db_connect');
 
 module.exports = function() {
   return {
+    findAll: function(callback){
+      pool.getConnection(function(err, con) {
+        console.log(`group find error : ${err}`);
+        let sql = 'SELECT * FROM groupinfo';
+        con.query(sql, function(error, rows, fields) {
+          if(error){
+            return callback(error);
+          }
+          con.release();
+          callback(null, rows);
+        });
+      });
+    },
     make: function(data, callback) {
       pool.getConnection(function(err, con) {
         console.log(`group make error : ${err}`);

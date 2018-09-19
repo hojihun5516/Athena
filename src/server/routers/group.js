@@ -13,6 +13,14 @@ router.post('', function(req, res) {
   });
 })
 
+router.get('', function(req, res) {
+  group.findAll(function(err, result) {
+    res.status(200).json({
+      groups: result
+    });
+  })
+})
+
 router.post('/:groupId/boards', function(req, res) {
   console.log(`board : ${req.body}`);
   console.log(req.params.groupId);
@@ -26,7 +34,9 @@ router.post('/:groupId/boards', function(req, res) {
 router.get('/:groupId/boards', function(req, res) {
   console.log(req.params.groupId);
   board.findByGroupId(req.params.groupId, function(err, data) {
-    res.status(200).json(data);
+    res.status(200).json({
+      boards: data
+    });
   })
 })
 

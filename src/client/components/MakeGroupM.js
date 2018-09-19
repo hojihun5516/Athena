@@ -20,7 +20,7 @@ class MakeGroupM extends Component {
     // 페이지 새로고침방지
     e.preventDefault();
     //state값을 App.js의 handleCreate에 보내준다
-    this.props.onCreate(this.state);
+
     axios.post('/groups',{
       name: this.state.name
     })
@@ -35,8 +35,8 @@ class MakeGroupM extends Component {
     this.setState({
       name : '',
     })
-    this.input.current.focus();
     this.onCloseModal();
+    this.props.onCreate(this.state);
   }
 
   handleChange = (e) => {
