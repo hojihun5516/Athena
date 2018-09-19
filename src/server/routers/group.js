@@ -13,6 +13,12 @@ router.post('', function(req, res) {
   });
 })
 
+router.get('', function(req, res) {
+  group.findAll(function(err, result) {
+    res.status(200).json({ groups: result });
+  });
+})
+
 router.post('/:groupId/boards', function(req, res) {
   console.log(`board : ${req.body}`);
   console.log(req.params.groupId);
