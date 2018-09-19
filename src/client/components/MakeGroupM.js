@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import Modal from "react-responsive-modal";
+import { observable } from 'mobx';
 
 class MakeGroupM extends Component {
   input = React.createRef();
   state = {
+    @observable
     name: '',
     open : false,
   }
