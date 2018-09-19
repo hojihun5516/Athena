@@ -15,10 +15,8 @@ router.post('', function(req, res) {
 
 router.get('', function(req, res) {
   group.findAll(function(err, result) {
-    res.status(200).json({
-      groups: result
-    });
-  })
+    res.status(200).json({ groups: result });
+  });
 })
 
 router.post('/:groupId/boards', function(req, res) {
@@ -34,13 +32,7 @@ router.post('/:groupId/boards', function(req, res) {
 router.get('/:groupId/boards', function(req, res) {
   console.log(req.params.groupId);
   board.findByGroupId(req.params.groupId, function(err, data) {
-<<<<<<< HEAD
-    res.status(200).json({
-      boards: data
-    });
-=======
   res.status(200).json({ boards: data });
->>>>>>> 0ea2d66c23d666a3189fceb5329addd22c6982df
   })
 })
 
