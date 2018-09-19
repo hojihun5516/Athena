@@ -10,7 +10,7 @@ class BoardList extends Component {
 
     const { data , onUpdate} = this.props;
     const list = data.map(
-      info => (<BoardInfo onUpdate={onUpdate} info={info} key={info.id} />)
+      info => (<BoardInfo onUpdate={onUpdate} info={info}/>)
     );
     return (
       <div>

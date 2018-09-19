@@ -4,13 +4,13 @@ class BoardInfo extends React.Component {
 
   state={
     contents:'',
+    key : '',
     title : '',
-
   }
 
   render () {
 
-    const {title,contents}=this.props.info;
+    const {title,contents,key}=this.props.info;
     const style={
       border:'1px solid black',
       margin : '9px',

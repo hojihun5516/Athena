@@ -20,6 +20,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.json());
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 //라우터 사용 - 앞의 url로 시작하는 요청이 들어오면 뒤의 라우터 사용
 app.use('/oauth', oauth);
 app.use('/groups', group);
