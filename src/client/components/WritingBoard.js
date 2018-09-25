@@ -1,9 +1,15 @@
 
 import axios from 'axios';
 import React, { Component } from 'react';
+import { observable } from 'mobx';
+
+class CounterContainer {
+  @observable count = 1;
+}
+const store = new CounterContainer();
 
 class WritingBoard extends Component {
-  input = React.createRef();
+  // input = React.createRef();
   state = {
     contents: '',
     title: '',
@@ -29,6 +35,7 @@ class WritingBoard extends Component {
       })
       this.setState({
         contents: '',
+        count: this.count++,
         title : '',
       })
 
@@ -43,7 +50,7 @@ class WritingBoard extends Component {
 
 
   render() {
-      const { open } = this.state;
+      
     return (
       <div>
 

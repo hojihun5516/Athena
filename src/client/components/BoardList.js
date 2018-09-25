@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import BoardInfo from './BoardInfo';
 
+
+
 class BoardList extends Component {
   static defaultProps = {
     data: []
