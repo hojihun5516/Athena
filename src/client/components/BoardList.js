@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import BoardInfo from './BoardInfo';
 
-
-
 class BoardList extends Component {
   static defaultProps = {
     data: []
@@ -10,12 +8,13 @@ class BoardList extends Component {
 
   render() {
 
-    const { data , onUpdate} = this.props;
+    const { data } = this.props;
     const list = data.map(
-      info => (<BoardInfo onUpdate={onUpdate} info={info}/>)
+      info => (<BoardInfo  info={info}/>)
     );
     return (
       <div>
+        {}
         {list}
       </div>
     );

@@ -4,10 +4,7 @@ import axios from 'axios';
 import WritingBoard from './WritingBoard';
 import BoardList from './BoardList';
 import { BrowserRouter as Router, Link ,NavLink, Redirect, Route, RouteComponentProps, Switch } from 'react-router-dom';
-import { observer } from 'mobx-react';
 
-
-@observer
 class Board extends React.Component{
 
   state = {
@@ -21,7 +18,6 @@ class Board extends React.Component{
           super(props);
           console.log("Boardconstructor");
           this.fetchBoardInfo(2);
-
   }
 
   componentWillMount(){
@@ -41,34 +37,13 @@ class Board extends React.Component{
     ]);
   }
 
+  handleCreate = (data) => {
+    this.fetchBoardInfo(2);
+  }
+
   componentDidMount(){
     console.log("componentDidMount");
 }
-
-  handleCreate = (data) => {
-    const { information } = this.state;
-    this.setState({
-      information: information.concat({
-        ...data,
-      })
-    });
-  }
-
-  handleUpdate = (id, data) => {
-    const { information } = this.state;
-    this.setState({
-      information: information.map(
-        info => {
-          if (info.id === id) {
-            return {
-              ...data,
-            };
-          }
-          return info;
-        }
-      )
-    });
-  }
 
   informationConcat(response){
     let abc=[];
@@ -83,7 +58,9 @@ class Board extends React.Component{
     })
 
   }
-
+componentWillReact(){
+  console.log("componentWillReact");
+}
 
 
 
@@ -93,17 +70,17 @@ class Board extends React.Component{
       <div>
       <Router>
       <div>
+
       <li><NavLink activeStyle={{fontSize:24}} to="/writing_board"> 글작성 </NavLink></li>
         <Switch>
 
         <Route exact={true} path="/writing_board"  render={()=><WritingBoard onCreate={this.handleCreate.bind(this)}/>}/>
+
+
       </Switch>
       </div>
       </Router>
-      <BoardList
-          data={this.state.information}
-          onUpdate={this.handleUpdate}
-        />
+      <BoardList data={this.state.information} />
       </div>
     );
   }
