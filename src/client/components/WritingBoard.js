@@ -3,19 +3,20 @@ import axios from 'axios';
 import React, { Component } from 'react';
 
 class WritingBoard extends Component {
-  input = React.createRef();
+  // input = React.createRef();
+
   state = {
     contents: '',
     title: '',
   }
-
-    handleSubmit = (e) => {
+    //async함수로 동기화시켜준다
+    handleSubmit = async (e) => {
       // 페이지 새로고침방지
       e.preventDefault();
-      //state값을 App.js의 handleCreate에 보내준다
+      //a는 성공여부확인
+      var a = 1;
 
-      this.props.onCreate(this.state);
-      axios.post('/groups/2/boards',{
+      await axios.post('/groups/2/boards',{
         contents : this.state.contents,
         title : this.state.title,
       })
@@ -26,12 +27,15 @@ class WritingBoard extends Component {
       }).catch(function b(error){
         console.log("error");
         console.log(error);
+        this.a=2;
       })
-      this.setState({
-        contents: '',
-        title : '',
-      })
-
+      if(a===1){
+        this.props.onCreate();
+        this.setState({
+          contents: '',
+          title : '',
+        })
+      }
     }
 
     handleChange = (e) => {
@@ -43,7 +47,7 @@ class WritingBoard extends Component {
 
 
   render() {
-      const { open } = this.state;
+
     return (
       <div>
 
