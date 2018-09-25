@@ -1,42 +1,52 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import Modal from "react-responsive-modal";
+import {observable} from 'mobx';
+
+
+
 
 class MakeGroupM extends Component {
-  input = React.createRef();
+  // input = React.createRef();
+
   state = {
+
     name: '',
     open : false,
   }
-
     onOpenModal = () => {
       this.setState({ open: true });
     };
 
     onCloseModal = () => {
-      this.setState({ open: false });
+      this.setState({ open: false});
     };
-  handleSubmit = (e) => {
+
+    // async함수로 동기화만들고 await 이 함수를 동기화시킴
+  handleSubmit = async (e) => {
     // 페이지 새로고침방지
     e.preventDefault();
-    //state값을 App.js의 handleCreate에 보내준다
-
-    axios.post('/groups',{
-      name: this.state.name
+    //a는 성공여부를 나타냄
+    let a = 1;
+    await axios.post('/groups',{
+      name: this.state.name,
     })
     .then(function success(response){
       console.log("success");
       console.log(response.data);
 
-    }).catch(function b(error){
+    }).catch(function (error){
       console.log("error");
       console.log(error);
+      a=2;
     })
     this.setState({
       name : '',
     })
     this.onCloseModal();
-    this.props.onCreate(this.state);
+    if(a===1){
+      this.props.onCreate();
+    }
   }
 
   handleChange = (e) => {
@@ -47,7 +57,7 @@ class MakeGroupM extends Component {
   }
 
   render() {
-      const { open } = this.state;
+    const { open } = this.state;
     return (
       <div>
       <button onClick={this.onOpenModal}>그룹만들기</button>

@@ -8,9 +8,9 @@ class GroupList extends Component {
 
   render() {
 
-    const { data , onUpdate} = this.props;
+    const { data } = this.props;
     const list = data.map(
-      info => (<GroupInfo onUpdate={onUpdate} info={info} key={info.id} />)
+      info => (<GroupInfo info={info} />)
     );
     return (
       <div>
