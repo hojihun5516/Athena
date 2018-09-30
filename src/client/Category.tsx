@@ -12,7 +12,8 @@ class Category extends React.Component{
 
           <div>
             <ul>
-              <li><NavLink exact={true} activeStyle={{fontSize:24}} to="/"> Board로 가자 </NavLink></li>
+              <li><NavLink exact={true} activeStyle={{fontSize:24}} to="/main"> group info로 가자 </NavLink></li>
+              <li><NavLink exact={true} activeStyle={{fontSize:24}} to="/board"> Board로 가자 </NavLink></li>
               <li><NavLink exact={true} activeStyle={{fontSize:24}} to="/chat"> chat로 가자 </NavLink></li>
             </ul>
           </div>
