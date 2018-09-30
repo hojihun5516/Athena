@@ -1,34 +1,21 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Link ,NavLink, Redirect, Route, RouteComponentProps, Switch } from 'react-router-dom';
-import ActivePage from './ActivePage';
-import './App.css';
-import Category from './Category';
-import MakeGroup from './MakeGroup';
-
-
+import Home from './Home';
+import Main from './Main';
 
 class App extends React.Component {
 
   public render() {
-
     return (
+      <div>
+        <Router>
+          <Switch>
+            <Route exact={true} path="/" component={Home}/>
+            <Route exact={true} path="/main" component={Main}/>
+          </Switch>
+    </Router>
 
-
-    <Router >
-      <div className="App">
-        <div className="Main-root1">
-          <MakeGroup/>
-        </div>
-        <div className="Main-root2">
-          <Category/>
-        </div>
-        <div className="Main-root3">
-          <ActivePage/>
-        </div>
-    </div>
-  </Router>
-
-
+      </div>
     );
   }
 }
