@@ -26,7 +26,7 @@ class LoginM extends Component {
     e.preventDefault();
     //a는 성공여부를 나타냄
     let a = 1;
-    await axios.post('/groups',{
+    await axios.post('http://localhost:8080/groups',{
       category: this.state.category,
     })
     .then(function success(response){
@@ -56,7 +56,7 @@ class LoginM extends Component {
       <Modal open={open} onClose={this.onCloseModal} center>
         어떤 계정으로 로그인 하시겠습니까?<br></br>
       <Facebook/>
-        
+
       </Modal>
 
       </div>

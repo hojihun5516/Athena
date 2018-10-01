@@ -9,6 +9,19 @@ const secret = require('../db/.secret')
 
 const router = express.Router();
 
+router.post('/facebook', function(req, res, next) {
+  sql.signIn(req.body, function(err, user) {
+    if (err) {
+      next(err);
+    };
+    console.log(user);
+    //userInfo를 session에 저장
+    //다음 요청부터 request.session.user로 사용할 수 있다.
+    req.session.user = userInfo;
+    res.status(200).json({user : user});
+  });
+});
+
 passport.use('kakao-login', new KakaoStrategy({
     callbackURL: secret.kakao.callback_url,
     clientID: secret.kakao.client_id,
@@ -39,7 +52,7 @@ passport.use('facebook-login', new FacebookStrategy({
 // login for social community
 router.get('/kakao', passport.authenticate('kakao-login'));
 router.get('/naver', passport.authenticate('naver-login'));
-router.get('/facebook', passport.authenticate('facebook-login'));
+// router.get('/facebook', passport.authenticate('facebook-login'));
 router.get('/google', passport.authenticate('google-login'));
 
 router.get('/kakao/callback', passport.authenticate('kakao-login', {
