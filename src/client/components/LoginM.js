@@ -1,8 +1,7 @@
 import axios from 'axios';
+import Facebook from './Facebook';
 import React, { Component } from 'react';
 import Modal from "react-responsive-modal";
-import {observable} from 'mobx';
-
 
 
 
@@ -56,15 +55,8 @@ class LoginM extends Component {
       <button onClick={this.onOpenModal}>로그인하기</button>
       <Modal open={open} onClose={this.onCloseModal} center>
         어떤 계정으로 로그인 하시겠습니까?<br></br>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type = "text"
-            name="name"
-            placeholder="그룹이름 입니다"
-            value={this.state.name}
-          />
-          <button type="submit">등록</button>
-        </form>
+      <Facebook/>
+        
       </Modal>
 
       </div>
