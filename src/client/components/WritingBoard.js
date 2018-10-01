@@ -16,7 +16,7 @@ class WritingBoard extends Component {
       //a는 성공여부확인
       var a = 1;
 
-      await axios.post('/groups/2/boards',{
+      await axios.post('http://localhost:8080/groups/2/boards',{
         contents : this.state.contents,
         title : this.state.title,
       })

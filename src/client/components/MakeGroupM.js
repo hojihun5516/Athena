@@ -28,7 +28,7 @@ class MakeGroupM extends Component {
     e.preventDefault();
     //a는 성공여부를 나타냄
     let a = 1;
-    await axios.post('/groups',{
+    await axios.post('http://localhost:8080/groups',{
       name: this.state.name,
     })
     .then(function success(response){
