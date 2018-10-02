@@ -1,3 +1,4 @@
+import axios from 'axios';
 import * as React from 'react';
 import FacebookLogin from 'react-facebook-login';
 
@@ -13,6 +14,19 @@ class Facebook extends React.Component {
   }
   responseFacebook = response =>{
    console.log(response);
+   axios.post('http://localhost:8080/oauth/facebook',{
+     id: response.userID,
+     provider: 'facebook',
+     username: response.name
+   })
+   .then(function success(response2){
+     console.log("success");
+     console.log(response2.data);
+   }).catch(function (error){
+     console.log("error");
+     console.log(error);
+   })
+
 this.setState({
    email : response.email,
    isLoggedIn: true,
