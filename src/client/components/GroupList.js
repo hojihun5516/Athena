@@ -3,14 +3,15 @@ import GroupInfo from './GroupInfo';
 
 class GroupList extends Component {
   static defaultProps = {
-    data: []
+    data: [],
+    onClick:()=>console.warn('onclick defined'),
   }
 
   render() {
 
-    const { data } = this.props;
+    const { data,onClick } = this.props;
     const list = data.map(
-      info => (<GroupInfo info={info} />)
+      info => (<GroupInfo info={info} onClick={onClick} />)
     );
     return (
       <div>

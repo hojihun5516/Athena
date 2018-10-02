@@ -28,7 +28,9 @@ class MakeGroup extends Component {
     console.log("handle");
     this.fetchGroupInfo();
   }
-
+  onClick=()=>{
+    console.log(this.state.information.name);
+  }
   informationConcat(response){
     let abc=[];
     let i=0;
@@ -64,6 +66,7 @@ class MakeGroup extends Component {
         <MakeGroupM onCreate={this.handleCreate}/>
         <GroupList
           data={this.state.information}
+          onClick={this.onClick}
         />
       </div>
     );

@@ -42,7 +42,7 @@ this.setState({
       )
     }else{
       fbContent = (<FacebookLogin
-        appId="304511927028870"
+        appId="1879705068793535"
         autoLoad={true}
         fields="name,email,picture"
         onClick={this.componentClicked}
