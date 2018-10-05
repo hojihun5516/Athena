@@ -13,6 +13,7 @@ class Facebook extends React.Component {
     userID: '',
   }
   responseFacebook = response =>{
+    axios.defaults.withCredentials = true
    console.log(response);
    axios.post('http://localhost:8080/oauth/facebook',{
      id: response.userID,
