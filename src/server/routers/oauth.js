@@ -17,7 +17,7 @@ router.post('/facebook', function(req, res, next) {
     console.log(user);
     //userInfo를 session에 저장
     //다음 요청부터 request.session.user로 사용할 수 있다.
-    req.session.user = userInfo;
+    req.session.user = user;
     res.status(200).json({user : user});
   });
 });

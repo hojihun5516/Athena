@@ -2,14 +2,27 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import MakeGroupM from './components/MakeGroupM';
 import GroupList from './components/GroupList';
+import {observable} from 'mobx';
+import {observer} from 'mobx-react';
 
+class GroupSelect extends Component{
+  @observable
+  name = '';
+}
+
+const store = new GroupSelect();
+
+@observer
 class MakeGroup extends Component {
 
+  @observable
+  nana='';
   state = {
     a: 1,
     information: [
 
     ],
+    name1:'',
   }
 
   fetchGroupInfo = async () => {
@@ -28,9 +41,17 @@ class MakeGroup extends Component {
     console.log("handle");
     this.fetchGroupInfo();
   }
-  onClick=()=>{
-    console.log(this.state.information.name);
+
+  onClick = (nam) => {
+    const { name1 } = this.state;
+    store.name = nam;
+    // this.nana=nam;
+    // this.setState({
+    //   name1: nam,
+    // });
+    console.log(nam);
   }
+
   informationConcat(response){
     let abc=[];
     let i=0;

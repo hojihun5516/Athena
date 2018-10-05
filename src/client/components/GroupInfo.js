@@ -5,9 +5,13 @@ class GroupInfo extends React.Component {
   state={
     name : '',
   }
+  onClick =() =>{
+      const {info,onClick} = this.props;
+      onClick(info.name);
+    }
+
 
   render () {
-
     const { name}=this.props.info;
     const style={
       border:'1px solid black',
@@ -21,7 +25,7 @@ class GroupInfo extends React.Component {
       {
 
           <Fragment>
-          <button>{name}</button>
+          <button onClick={this.onClick}>{name}</button>
           </Fragment>
 
       }

@@ -4,7 +4,6 @@ import GroupInfo from './GroupInfo';
 class GroupList extends Component {
   static defaultProps = {
     data: [],
-    onClick:()=>console.warn('onclick defined'),
   }
 
   render() {

@@ -1,7 +1,10 @@
+import {observer} from 'mobx-react';
 import * as React from 'react';
 import { BrowserRouter as Router, Link ,NavLink, Redirect, Route, RouteComponentProps, Switch } from 'react-router-dom';
 import Board from './components/Board';
 import Chat from './components/Chat';
+
+
 
 const notFound= ()=>{
   return(
@@ -23,6 +26,9 @@ const admin = ()=>{
 };
 
 
+// const store = new GroupSelect();
+
+@observer
 class ActivePage extends React.Component{
   public render(){
     return(
