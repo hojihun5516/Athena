@@ -35,8 +35,8 @@ cd Athena
 # Install dependencies
 yarn (or npm install)
 
-# Start client server
-yarn client (or npm run client)
+# Start development server
+yarn dev (or npm run client)
 
 # Build for production
 yarn build (or npm run build)
