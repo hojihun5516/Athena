@@ -56,6 +56,7 @@ class LoginM extends Component {
       <Modal open={open} onClose={this.onCloseModal} center>
         어떤 계정으로 로그인 하시겠습니까?<br></br>
       <Facebook/>
+
       </Modal>
 
       </div>

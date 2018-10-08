@@ -61,9 +61,6 @@ class Board extends React.Component{
 componentWillReact(){
   console.log("componentWillReact");
 }
-
-
-
    render(){
      console.log("renderBoard");
     return(

@@ -100,7 +100,7 @@
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.0.tgz#2fac51050c68f7d6f96c5aafc631132522f4aa3f"
 
-"@types/jest@^23.3.3":
+"@types/jest@^23.3.1":
   version "23.3.3"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.3.tgz#246ebcc52771d2327bb8e37aa971b412d9dc4237"
 
@@ -6127,7 +6127,7 @@ react-minimalist-portal@^2.3.1:
   dependencies:
     prop-types "^15.6.1"
 
-react-responsive-modal@^3.4.0:
+react-responsive-modal@^3.3.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/react-responsive-modal/-/react-responsive-modal-3.4.0.tgz#8aa3fa39d8e2e054fbc66e895460f773c9f598b1"
   dependencies:
