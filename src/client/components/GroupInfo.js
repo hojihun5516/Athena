@@ -5,15 +5,10 @@ class GroupInfo extends React.Component {
 
     onClick =() =>{
       const {info, onClick} = this.props;
-      onClick(info.name);
+      onClick(info.id);
     }
-
-  state={
-    name : '',
-  }
-
   render () {
-    const { name }=this.props.info;
+    const { name,id }=this.props.info;
     const style={
       border:'1px solid black',
       margin : '9px',

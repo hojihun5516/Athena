@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import MakeGroupM from './components/MakeGroupM';
 import GroupList from './components/GroupList';
 
+
 @inject('groupSelect')
 @observer
 class MakeGroup extends Component {
@@ -30,7 +31,9 @@ class MakeGroup extends Component {
     console.log("handle");
     this.fetchGroupInfo();
   }
-
+  handlePageChange() {
+     window.location.hash = "/";
+   }
   informationConcat(response){
     let abc=[];
     let i=0;
@@ -55,13 +58,14 @@ class MakeGroup extends Component {
   }
 
   componentWillMount(){
-      console.log("componentWillMount");
       this.fetchGroupInfo();
 
   }
-  onClick=(name)=>{
+  onClick=(id)=>{
     const store =this.props.groupSelect;
-   store.setGroupId(name);
+   store.setGroupId(id);
+   // this.handlePageChange();
+
  }
 
   render() {

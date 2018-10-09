@@ -1,4 +1,5 @@
-import {action,observable} from 'mobx';
+import {action,computed,observable} from 'mobx';
+import { Redirect } from 'react-router-dom';
 
 class GroupSelect{
   @observable
@@ -7,6 +8,10 @@ class GroupSelect{
   @action
   setGroupId = (groupId)=>{
     this.groupId=groupId
+  }
+  @action
+  getGroupId = () =>{
+    return this.groupId
   }
 }
 export default GroupSelect;
